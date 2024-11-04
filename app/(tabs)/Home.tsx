@@ -1,4 +1,4 @@
-import { COLORS } from "@/constants/Colors";
+import { THEME } from "@/constants/Colors";
 import { Card, Column, VStack } from "native-base";
 import {
   StyleSheet,
@@ -40,7 +40,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.colors.white,
+    backgroundColor: THEME.colors.white,
     alignItems: "stretch",
     justifyContent: 'flex-start',
   },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   TextColors: {
-    color: COLORS.colors.secondary,
+    color: THEME.colors.secondary,
     fontSize: 20,
   },
   ImageArredondada: {

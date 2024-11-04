@@ -6,13 +6,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login'; 
 import Home from './Home';
 import Cadastro from './Cadastro';
-import { COLORS } from '../../constants/Colors';
+import { THEME } from '../../constants/Colors';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NativeBaseProvider theme={COLORS}>
+    <NativeBaseProvider theme={THEME}>
       <StatusBar />
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>

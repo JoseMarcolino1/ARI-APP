@@ -1,5 +1,5 @@
 import axios from "axios";
-import Usuario from "../interfaces/usuario";
+import Usuario from "../interfaces/Usuario";
 
 
 

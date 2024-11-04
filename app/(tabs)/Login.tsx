@@ -1,4 +1,4 @@
-import { COLORS } from "@/constants/Colors";
+import { THEME } from "@/constants/Colors";
 import { VStack } from "native-base";
 import {
   Button,
@@ -58,7 +58,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.colors.primary,
+    backgroundColor: THEME.colors.primary,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
   texts: {
     width: 350,
     fontSize: 12,
-    color: COLORS.colors.text,
+    color: THEME.colors.text,
     marginTop: 10,
   },
   btnEntrar: {
     width: 350,
     marginTop: 50,
     borderRadius: 10,
-    backgroundColor: COLORS.colors.secondary,
+    backgroundColor: THEME.colors.secondary,
     padding: 10,
     alignItems: "center",
   },
