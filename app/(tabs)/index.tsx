@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NativeBaseProvider theme={THEME}>
       <StatusBar />
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Cadastro">
           <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
           <Stack.Screen name="Cadastro" component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>

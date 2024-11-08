@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import {COLORS} from "../../constants/Colors";
+import {THEME} from "../../constants/Colors";
 import Logo from "../../assets/images/logo-dark-mode.png";
 
 interface CardRemedioProps {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 20,
         margin: 10,
-        backgroundColor: COLORS.colors.primary,
+        backgroundColor: THEME.colors.primary,
         borderRadius: 10,
         
       },
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
         width: 50,
       },
       text: {
-        color: COLORS.colors.white,
+        color: THEME.colors.white,
         fontSize: 16,
         marginLeft: 10,
       },
       subtext: {
-        color: COLORS.colors.white,
+        color: THEME.colors.white,
         fontSize: 12,
         marginLeft: 10,
       },

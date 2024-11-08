@@ -14,17 +14,51 @@ import {
 import Logo from "../../assets/images/logo-dark-mode.png";
 import { Input } from "../componentes/Input";
 import { useNavigation } from "expo-router";
+import usuarioService from "@/services/usuario-service";
+import Usuario from "@/interfaces/Usuario";
 
-export default function Cadastro() {
-  const [dataNascimento, setDataNascimento] = useState(new Date());
+const Cadastro: React.FC = () => {
+  const [id, setId] = useState(0);
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [dataNascimento, setDataNascimento] = useState<Date | undefined>(
+    undefined
+  );
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const navigation: any = useNavigation();
+
   const handleChangedDate = (event: any, selectedDate?: Date) => {
     setShowDatePicker(false);
     if (selectedDate) {
       setDataNascimento(selectedDate);
     }
   };
-  const navigation: any = useNavigation();
+  const handleCadastro = async () => {
+    if (!nome || !email || !senha || !dataNascimento) {
+      console.log("VAMO VE: " + nome, email, senha, dataNascimento);
+      Alert.alert("Preencha todos os campos");
+      return;
+    }
+
+    try {
+      const usuario = {
+        id,
+        nome,
+        email,
+        senha,
+        dataNascimento: dataNascimento
+          ? dataNascimento.toISOString().split("T")[0]
+          : "",
+        status: true,
+      };
+      const response = await usuarioService.criaUsuarios(usuario);
+      console.log(response);
+      Alert.alert("Usuário cadastrado com sucesso", response.message);
+    } catch (error) {
+      Alert.alert("Erro ao cadastrar usuário", (error as Error).message);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -38,42 +72,37 @@ export default function Cadastro() {
         }}
       />
       <Text style={styles.texts}>Nome Completo</Text>
-      <Input placeholder="Digite seu nome" placeholderTextColor="#fff" />
+      <Input placeholder="Digite seu nome" placeholderTextColor="#fff" onChangeText={setNome}/>
 
-      <Text style={styles.texts}>
-        Data de Nascimento
-      </Text>
+      <Text style={styles.texts}>Data de Nascimento</Text>
       <Input
         placeholder="Digite sua data de nascimento"
         placeholderTextColor="#fff"
         onFocus={() => setShowDatePicker(true)}
-        value={dataNascimento.toLocaleDateString()}
+        value={dataNascimento ? dataNascimento.toLocaleDateString() : ""}
       />
       {showDatePicker && (
         <DateTimePicker
-          value={dataNascimento}
+          value={dataNascimento || new Date()}
           mode="date"
           display="default"
           onChange={handleChangedDate}
-          
         />
       )}
 
       <Text style={styles.texts}>E-mail</Text>
-      <Input
-        placeholder="Digite seu email"
-        placeholderTextColor="#fff"
-      />
+      <Input placeholder="Digite seu email" placeholderTextColor="#fff" onChangeText={setEmail}/>
 
       <Text style={styles.texts}>Senha</Text>
       <Input
+        onChangeText={setSenha}
         placeholder="Digite sua senha"
         placeholderTextColor="#fff"
         secureTextEntry={true}
       ></Input>
 
       <View>
-        <TouchableOpacity style={styles.btnEntrar}>
+        <TouchableOpacity style={styles.btnEntrar} onPress={()=> handleCadastro()}>
           <Text style={styles.btnText}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
@@ -81,14 +110,16 @@ export default function Cadastro() {
       <View>
         <TouchableOpacity
           style={styles.btnCadastro}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.btnText}>Já possuo cadastro</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-}
+};
+
+export default Cadastro;
 
 const styles = StyleSheet.create({
   container: {

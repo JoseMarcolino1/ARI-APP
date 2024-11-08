@@ -13,14 +13,18 @@ import Logo from "../../assets/images/logo-dark-mode.png";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import CardRemedio  from "../componentes/CardRemedio";
+import Usuario from "@/interfaces/Usuario";
+import criaUsuarios from "@/services/usuario-service";
+
 
 
 export default function Home() {
   const navigation: any = useNavigation();
+
   return (
     <View style={styles.container}>
         <View style={styles.LogoContainer}>
-            <Text style={styles.TextColors}>Olá User</Text>
+            <Text style={styles.TextColors}>hello</Text>
             <Image source={Logo} style={styles.ImageArredondada}>
             </Image>
         </View>
